@@ -1,0 +1,16 @@
+version: '3'
+services:
+  local_mysql:
+    container_name: mysql
+    image: mysql:5.6
+    restart: unless-stopped
+    environment:
+     - MYSQL_ROOT_PASSWORD=9tAzh
+     - MYSQL_DATABASE=test
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      #- ./db-dump:/docker-entrypoint-initdb.d
+      - ./data:/var/lib/mysql:rw
+      - ./mysql/my.cnf:/etc/mysql/my.cnf
+    ports:
+     - "13306:3306"
